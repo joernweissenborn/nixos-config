@@ -16,6 +16,7 @@
         ctags
         yaml-language-server
         # TODO: try grammarly, languagetool, marksman, prosemd...
+        marksman
         rnix-lsp
         nil
       ] ++ (with python3Packages; [
@@ -249,6 +250,7 @@
             end
             lspconfig.yamlls.setup{on_attach=on_attach}
             lspconfig.rnix.setup{on_attach=on_attach}
+            lspconfig.marksman.setup{on_attach=on_attach}
             lspconfig.pylsp.setup{
               on_attach = on_attach,
               settings = {
