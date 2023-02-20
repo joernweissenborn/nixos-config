@@ -8,6 +8,7 @@
 
     packages = with pkgs; [
       # Terminal
+      konsole
       btop # Resource Manager
       ranger # File Manager
       tldr # Helper

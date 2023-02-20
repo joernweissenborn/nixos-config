@@ -46,14 +46,12 @@
 
   environment = {
     variables = {
-      TERMINAL = "alacritty";
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
     systemPackages = with pkgs; [
       # Default packages installed system-wide
       killall
-      konsole
       pciutils
       usbutils
       wget
