@@ -4,9 +4,6 @@
 
 { lib, pkgs, ... }:
 {
-  home.file."foo".text = ''
-    set auto-load safe-path /nix/store
-  '';
 
   programs = {
     zsh = {
