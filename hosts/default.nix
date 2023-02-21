@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, location, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, location, nixos-hardware , ... }:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -21,6 +21,7 @@ in
       };
     };
     modules = [
+      nixos-hardware.nixosModules.lenovo-thinkpad-x260
       ./elenia
       ./configuration.nix
 

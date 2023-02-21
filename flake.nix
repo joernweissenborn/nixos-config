@@ -4,6 +4,7 @@
   inputs = # All flake references used to build my NixOS setup. These are dependencies.
     {
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
+      nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
       home-manager = {
         # User Package Management
@@ -12,8 +13,9 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }: # Function that tells my flake which to use and what do what to do with the dependencies.
-    let # Variables that can be used in the config files.
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-hardware, ... }:
+    let
+      # Variables that can be used in the config files.
       user = "joern";
       location = "$HOME/.setup";
     in
@@ -24,7 +26,7 @@
         import ./hosts {
           # Imports ./hosts/default.nix
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager user location; # Also inherit home-manager so it does not need to be defined here.
+          inherit inputs nixpkgs home-manager user location nixos-hardware;
         }
       );
     };
