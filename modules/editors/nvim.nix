@@ -26,6 +26,7 @@
       ]);
 
       extraConfig = ''
+        set noswapfile
         let mapleader = ","
         syntax enable
         set background=light
@@ -175,23 +176,25 @@
         {
           plugin = (nvim-treesitter.withPlugins (plugins: with plugins;
             [
+              bash
+              c
               dockerfile
               git_rebase
               help
-              meson
-              regex
-              sql
-              bash
-              python
-              nix
-              c
-              rust
               html
-              markdown
-              markdown_inline
+              lua
               json
               json5
+              markdown
+              markdown_inline
+              meson
+              nix
+              python
+              regex
+              rust
+              sql
               toml
+              vim
               yaml
             ]));
           type = "lua";
