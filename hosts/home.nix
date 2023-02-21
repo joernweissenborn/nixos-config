@@ -8,7 +8,6 @@
 
     packages = with pkgs; [
       # Terminal
-      konsole
       btop # Resource Manager
       ranger # File Manager
       tldr # Helper
@@ -30,6 +29,15 @@
       firefox
       vivaldi
     ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      BROWSER = "firefox";
+      TERMINAL = "kitty";
+      XDG_CACHE_HOME = "\${HOME}/.cache";
+      XDG_CONFIG_HOME = "\${HOME}/.config";
+      XDG_BIN_HOME = "\${HOME}/.local/bin";
+      XDG_DATA_HOME = "\${HOME}/.local/share";
+  };
     stateVersion = "22.11";
   };
 
@@ -38,6 +46,7 @@
   };
   imports =
     (import ../modules/editors) ++
+    (import ../modules/terminals) ++
     (import ../modules/shell);
 
 }
