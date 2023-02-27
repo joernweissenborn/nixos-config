@@ -73,12 +73,13 @@
         map <C-f> :lua vim.lsp.buf.format()<CR>
 
         au FileType python map <C-f> :silent !black %<CR>
+        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NvimTreeOpen | endif
+        nmap <F7> :NvimTreeToggle<CR>
       '';
 
 
       plugins = with pkgs.vimPlugins; [
         auto-pairs
-        barbar-nvim
         nvim-lspconfig
         nvim-web-devicons
         vim-devicons
@@ -110,6 +111,31 @@
           config = ''
             let g:auto_save_in_insert_mode = 0
             let g:auto_save = 1
+          '';
+        }
+
+        {
+          plugin = barbar-nvim;
+          type = "lua";
+          config = ''
+            local nvim_tree_events = require('nvim-tree.events')
+            local bufferline_api = require('bufferline.api')
+
+            local function get_tree_size()
+              return require'nvim-tree.view'.View.width
+            end
+
+            nvim_tree_events.subscribe('TreeOpen', function()
+              bufferline_api.set_offset(get_tree_size())
+            end)
+
+            nvim_tree_events.subscribe('Resize', function()
+              bufferline_api.set_offset(get_tree_size())
+            end)
+
+            nvim_tree_events.subscribe('TreeClose', function()
+              bufferline_api.set_offset(0)
+            end)
           '';
         }
         {
@@ -158,13 +184,24 @@
           '';
         }
         {
-          plugin = nerdtree;
+          plugin = nvim-tree-lua;
+          type = "lua";
           config = ''
-            nmap <F7> :NERDTreeToggle<CR>
-            let NERDTreeShowHidden=1
-            autocmd StdinReadPre * let s:std_in=1
-            autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            require("nvim-tree").setup({
+              sort_by = "case_sensitive",
+              diagnostics = {
+                enable = true,
+                show_on_dirs = true,
+              },
+              renderer = {
+                group_empty = true,
+              },
+              filters = {
+                dotfiles = true,
+              },
+            })
           '';
         }
         {
