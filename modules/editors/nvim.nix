@@ -82,8 +82,6 @@
         auto-pairs
         nvim-lspconfig
         nvim-web-devicons
-        vim-devicons
-
         lspkind-nvim
         cmp-buffer
         cmp-nvim-lsp
@@ -96,16 +94,6 @@
         vim-sleuth # guess indentation
         vim-surround
         vim-qml
-        nerdtree-git-plugin
-        {
-          plugin = vim-airline;
-          config = ''
-            let g:airline#extensions#tabline#enabled = 1
-            let g:airline#extensions#tabline#enabled = 1
-            let g:airline#extensions#tabline#left_sep = ' '
-            let g:airline#extensions#tabline#left_alt_sep = '|'"
-          '';
-        }
         {
           plugin = vim-auto-save;
           config = ''
@@ -202,6 +190,13 @@
                 dotfiles = true,
               },
             })
+          '';
+        }
+        {
+          plugin = lualine-nvim;
+          type = "lua";
+          config = ''
+            require('lualine').setup()
           '';
         }
         {
