@@ -21,18 +21,16 @@
         nil
       ] ++ (with python3Packages; [
         black
+        isort
         pyright
         python-lsp-server
-        python-lsp-black
       ]);
 
       extraConfig = ''
         set noswapfile
         let mapleader = ","
         syntax enable
-        set background=light
         colorscheme solarized
-        call togglebg#map("<F4>")
 
         set tw=0 " No Auto insert newline
         set number
@@ -70,9 +68,7 @@
         map <leader>r :lua vim.lsp.buf.rename()<CR>
         map <leader>g :lua vim.lsp.buf.declaration()<CR>
         map <leader>i :lua vim.lsp.buf.hover()<CR>
-        map <C-f> :lua vim.lsp.buf.format()<CR>
 
-        au FileType python map <C-f> :silent !black %<CR>
         autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NvimTreeOpen | endif
         nmap <F7> :NvimTreeToggle<CR>
       '';
@@ -169,6 +165,19 @@
                 \ 'ctagsbin'  : 'gotags',
                 \ 'ctagsargs' : '-sort -silent'
                 \ }
+          '';
+        }
+        {
+          plugin = null-ls-nvim;
+          type = "lua";
+          config = ''
+            null_ls = require("null-ls")
+            null_ls.setup({
+              sources = {
+                null_ls.builtins.formatting.isort,
+                null_ls.builtins.formatting.black,
+              },
+            })
           '';
         }
         {
@@ -285,7 +294,7 @@
               vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
               vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, bufopts)
               vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
-              vim.keymap.set('n', '<space>f', function()
+              vim.keymap.set('n', '<C-f>', function()
                 vim.lsp.buf.format { async = true }
               end, bufopts)
             end
