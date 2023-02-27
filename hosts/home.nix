@@ -21,7 +21,6 @@
       # dev tools
       direnv
       python3
-      python3Packages.black
       pre-commit
 
       # browser
