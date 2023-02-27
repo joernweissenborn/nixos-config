@@ -23,6 +23,7 @@
         black
         pyright
         python-lsp-server
+        python-lsp-black
       ]);
 
       extraConfig = ''
@@ -77,7 +78,11 @@
 
       plugins = with pkgs.vimPlugins; [
         auto-pairs
+        barbar-nvim
         nvim-lspconfig
+        nvim-web-devicons
+        vim-devicons
+
         lspkind-nvim
         cmp-buffer
         cmp-nvim-lsp
@@ -262,10 +267,12 @@
                   plugins = {
                     flake8 = {
                       enabled = true,
-                      pyright = overlap,
                     },
                     pycodestyle = {
-                      enabled=true,
+                      enabled=false,
+                    },
+                    autopep8 = {
+                      enabled=false,
                     },
                   },
                 },
