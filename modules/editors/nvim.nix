@@ -64,10 +64,6 @@
         " paste from buffer
         nnoremap <leader>fp :r ~/.vimbuffer<CR>
         map <leader>w :StripWhitespace<CR>
-        map <leader>q :lua vim.lsp.buf.code_action()<CR>
-        map <leader>r :lua vim.lsp.buf.rename()<CR>
-        map <leader>g :lua vim.lsp.buf.declaration()<CR>
-        map <leader>i :lua vim.lsp.buf.hover()<CR>
 
         autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NvimTreeOpen | endif
         nmap <F7> :NvimTreeToggle<CR>
@@ -125,7 +121,7 @@
         {
           plugin = vim-gitgutter;
           config = ''
-            let g:gitgutter_highlight_lines = 1
+            let g:gitgutter_highlight_lines = 0
           '';
         }
         {
@@ -196,7 +192,14 @@
                 group_empty = true,
               },
               filters = {
-                dotfiles = true,
+                dotfiles = false,
+              },
+              actions = {
+                open_file = {
+                  window_picker = {
+                    enable = false,
+                  },
+                },
               },
             })
           '';
@@ -307,7 +310,7 @@
                 pylsp = {
                   plugins = {
                     flake8 = {
-                      enabled = true,
+                      enabled = false,
                     },
                     pycodestyle = {
                       enabled=false,
@@ -323,7 +326,16 @@
               settings = {
                 python = {
                   analysis = {
-                    typeCheckingMode = 'strict',
+                    autoSearchPaths = true,
+                    diagnosticMode = "workspace",
+                    useLibraryCodeForTypes = true,
+                    typeCheckingMode = 'basic',
+                    diagnosticSeverityOverrides = {
+                      reportUnknownMemberType = 'info',
+                      reportUnknownArgumentType = 'info',
+                      reportUnknownParameterType = 'info',
+                      reportUnknownVariableType = 'info',
+                    },
                   },
                 },
               },

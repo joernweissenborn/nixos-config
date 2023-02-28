@@ -53,7 +53,7 @@
         	POWERLEVEL9K_PROMPT_ON_NEWLINE=true
         	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 
-        	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(status command_execution_time ssh vcs)
+        	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh status command_execution_time vcs)
 
         	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(venv dir)
 

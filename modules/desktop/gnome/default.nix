@@ -44,7 +44,7 @@
       gnome-music
       evince # document viewer
       totem # video player
-      # gnome-terminal
+      gnome-terminal
 
     ]);
   };
