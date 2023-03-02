@@ -15,18 +15,21 @@
 
   outputs = inputs @ { self, nixpkgs, home-manager, nixos-hardware, ... }:
     let
-      # Variables that can be used in the config files.
-      user = "joern";
       location = "$HOME/.setup";
+      user = "joern";
+      stateVersion = "22.11";
     in
-    # Use above variables in ...
     {
       nixosConfigurations = (
-        # NixOS configurations
         import ./hosts {
-          # Imports ./hosts/default.nix
+          inherit home-manager;
+          inherit inputs;
+          inherit location;
+          inherit nixos-hardware;
+          inherit nixpkgs;
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs home-manager user location nixos-hardware;
+          inherit user;
+          inherit stateVersion;
         }
       );
     };

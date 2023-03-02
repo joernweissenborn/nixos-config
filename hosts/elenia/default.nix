@@ -2,13 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../os/default.nix
+      ../../os/services/pipewire/default.nix
+      ../../os/services/ssh/default.nix
       ../../modules/desktop/gnome/default.nix # Window Manager
     ];
 

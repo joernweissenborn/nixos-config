@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, location, nixos-hardware , ... }:
+{ lib, inputs, nixpkgs, home-manager, user, stateVersion, location, nixos-hardware, ... }:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -9,22 +9,17 @@ let
   };
 
   lib = nixpkgs.lib;
-in
-{
-  elenia = lib.nixosSystem {
+  mkHost = { user, hostName, extraModules ? [ ], stateVersion }: lib.nixosSystem {
     # Laptop
     inherit system;
     specialArgs = {
-      inherit inputs user location;
+      inherit inputs user location stateVersion;
       host = {
-        hostName = "elenia";
+        inherit hostName;
       };
     };
     modules = [
-      nixos-hardware.nixosModules.lenovo-thinkpad-x260
-      ./elenia
-      ./configuration.nix
-
+      ./${hostName}
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -32,42 +27,28 @@ in
         home-manager.extraSpecialArgs = {
           inherit user;
           host = {
-            hostName = "elenia";
+            inherit hostName;
           };
         };
         home-manager.users.${user} = {
-          imports = [ (import ./home.nix) ];
+          imports = [ (import ../user/${user} { inherit lib pkgs user stateVersion; }) ];
         };
       }
+    ] ++ extraModules;
+  };
+in
+{
+  elenia = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "elenia";
+    extraModules = [
+      nixos-hardware.nixosModules.lenovo-thinkpad-x260
     ];
   };
-  vbox = lib.nixosSystem {
-    # VM profile
-    inherit system;
-    specialArgs = {
-      inherit inputs user location;
-      host = {
-        hostName = "vbox";
-      };
-    };
-    modules = [
-      ./vbox
-      ./configuration.nix
-
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit user;
-          host = {
-            hostName = "vbox";
-          };
-        };
-        home-manager.users.${user} = {
-          imports = [ (import ./home.nix) ];
-        };
-      }
-    ];
+  vbox = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "vbox";
   };
 }
