@@ -17,6 +17,7 @@
         # Extra plugins for zsh
         enable = true;
         plugins = [
+          "history-substring-search"
           "fancy-ctrl-z"
           "git"
           "pip"
@@ -48,17 +49,17 @@
         }
       ];
       initExtra = ''
-               [[ ! -f ~/.zsh/plugins/powerlevel10k-config/p10k.zsh ]] || source ~/.zsh/plugins/powerlevel10k-config/p10k.zsh
-                # Powerlevel9k
-        	POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-        	POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+        [[ ! -f ~/.zsh/plugins/powerlevel10k-config/p10k.zsh ]] || source ~/.zsh/plugins/powerlevel10k-config/p10k.zsh
+        # Powerlevel9k
+        POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+        POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 
-        	POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh status command_execution_time vcs)
+        POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ssh status command_execution_time vcs)
 
-        	POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(venv dir)
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(venv dir)
 
-        	POWERLEVEL9K_DIR_SHOW_WRITABLE=true
-                emulate zsh -c "$(direnv hook zsh)"
+        POWERLEVEL9K_DIR_SHOW_WRITABLE=true
+        emulate zsh -c "$(direnv hook zsh)"
       '';
     };
   };
