@@ -14,11 +14,12 @@
       extraPackages = with pkgs; [
         clang-tools
         ctags
-        yaml-language-server
-        # TODO: try grammarly, languagetool, marksman, prosemd...
+        gopls
         marksman
-        rnix-lsp
+        nodejs
         nil
+        rnix-lsp
+        yaml-language-server
       ] ++ (with python3Packages; [
         black
         isort
@@ -26,52 +27,11 @@
         python-lsp-server
       ]);
 
-      extraConfig = ''
-        set noswapfile
-        let mapleader = ","
-        syntax enable
-        colorscheme solarized
-
-        set tw=0 " No Auto insert newline
-        set number
-        set lazyredraw
-        set cursorline
-        set wildmenu
-        set visualbell
-        set spell spelllang=en_US
-        nnoremap <Tab> :bprevious<CR>
-        nnoremap <S-Tab> :bnext<CR>
-
-        " double line or block
-        nmap <C-d> yyp
-        vmap <C-d> ykp
-        imap <C-d> <ESC>yypi
-
-        set formatoptions-=tc
-        " delete without yanking
-        nnoremap <leader>d "_d
-        vnoremap <leader>d "_d
-        vnoremap <leader>p "_dP"
-        nnoremap <leader>vp viw"_dP"
-
-        " move line up and down
-        nnoremap <S-Up> ddkkp
-        nnoremap <S-Down> ddp
-
-        " copy to buffer
-        vmap <leader>fy :w! ~/.vimbuffer<CR>
-        nmap <leader>fy :.w! ~/.vimbuffer<CR>
-        " paste from buffer
-        nnoremap <leader>fp :r ~/.vimbuffer<CR>
-        map <leader>w :StripWhitespace<CR>
-
-        autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NvimTreeOpen | endif
-        nmap <F7> :NvimTreeToggle<CR>
-      '';
-
+      extraConfig = builtins.readFile ./extraConfig.vim;
 
       plugins = with pkgs.vimPlugins; [
         auto-pairs
+        copilot-vim
         nvim-lspconfig
         nvim-web-devicons
         lspkind-nvim
@@ -239,9 +199,10 @@
               git_rebase
               help
               html
-              lua
+              tree-sitter-go
               json
               json5
+              lua
               markdown
               markdown_inline
               meson
@@ -279,151 +240,12 @@
         {
           plugin = nvim-lspconfig;
           type = "lua";
-          config = ''
-            local lspconfig = require('lspconfig')
-            local lsp_defaults = lspconfig.util.default_config
-            lsp_defaults.capabilities = vim.tbl_deep_extend(
-              'force',
-              lsp_defaults.capabilities,
-              require('cmp_nvim_lsp').default_capabilities()
-            )
-            local opts = { noremap=true, silent=true }
-            vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-            vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-            local on_attach = function(_client, bufnr)
-              vim.api.nvim_buf_set_option(bufnr, 'omnifunc',
-                                          'v:lua.vim.lsp.omnifunc')
-              local bufopts = { noremap=true, silent=true, buffer=bufnr }
-              vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-              vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-              vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-              vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-              vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-              vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-              vim.keymap.set('n', '<space>r', vim.lsp.buf.rename, bufopts)
-              vim.keymap.set('n', '<space>a', vim.lsp.buf.code_action, bufopts)
-              vim.keymap.set('n', '<C-f>', function()
-                vim.lsp.buf.format { async = true }
-              end, bufopts)
-            end
-            lspconfig.yamlls.setup{on_attach=on_attach}
-            lspconfig.rnix.setup{on_attach=on_attach}
-            lspconfig.marksman.setup{on_attach=on_attach}
-            lspconfig.pylsp.setup{
-              on_attach = on_attach,
-              settings = {
-                pylsp = {
-                  plugins = {
-                    flake8 = {
-                      enabled = false,
-                    },
-                    pycodestyle = {
-                      enabled=false,
-                    },
-                    autopep8 = {
-                      enabled=false,
-                    },
-                  },
-                },
-              },
-            }
-            lspconfig.pyright.setup{
-              settings = {
-                python = {
-                  analysis = {
-                    autoSearchPaths = true,
-                    diagnosticMode = "workspace",
-                    useLibraryCodeForTypes = true,
-                    typeCheckingMode = 'basic',
-                    diagnosticSeverityOverrides = {
-                      reportUnknownMemberType = 'info',
-                      reportUnknownArgumentType = 'info',
-                      reportUnknownParameterType = 'info',
-                      reportUnknownVariableType = 'info',
-                    },
-                  },
-                },
-              },
-            }
-            lspconfig.clangd.setup{
-              on_attach = on_attach,
-            }
-          '';
+          config = builtins.readFile ./lspConf.lua;
         }
         {
           plugin = nvim-cmp;
           type = "lua";
-          config = ''
-                    vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
-                    local cmp = require('cmp')
-                    local lspkind = require('lspkind')
-                    local check_backspace = function()
-                      local col = vim.fn.col(".") - 1
-                      return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-                    end
-                    cmp.setup{
-                      sources = cmp.config.sources({
-                        { name = 'nvim_lsp' },
-                      }, {
-                        { name = 'buffer' },
-                        { name = 'path', option = { trailing_slash_label = false } },
-                      }),
-                      window = {
-                        completion = {
-                          winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-                          col_offset = -3,
-                          side_padding = 0,
-                        },
-
-                        --documentation = cmp.config.window.bordered(),
-                      },
-                      formatting = {
-                        fields = { "kind", "abbr", "menu" },
-                        format = function(entry, vim_item)
-                          local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-                          local strings = vim.split(kind.kind, "%s", { trimempty = true })
-                          kind.kind = " " .. (strings[1] or "") .. " "
-                          kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-                          return kind
-                        end,
-                      },
-                      mapping = {
-                        ['<C-Space>'] = cmp.mapping.confirm({select = false}),
-                        ['<C-Tab>'] = cmp.mapping.complete_common_string(),
-                            ['<CR>'] = cmp.mapping.confirm {
-              behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
-            },
-                        ['<Tab>'] = cmp.mapping(function(fallback)
-                          if cmp.visible() then
-                            if not cmp.complete_common_string() then
-                              cmp.select_next_item(select_opts)
-                            end
-                          elseif check_backspace() then
-                            fallback()
-                          elseif luasnip.expandable() then
-                            luasnip.expand()
-                          elseif luasnip.expand_or_locally_jumpable() then
-                            luasnip.expand_or_jump()
-                          else
-                            cmp.complete()
-                          end
-                        end, {'i', 's'}),
-                        ['<S-Tab>'] = cmp.mapping(function(fallback)
-                          if cmp.visible() then
-                            cmp.select_prev_item(select_opts)
-                          elseif luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
-                          else
-                            fallback()
-                          end
-                        end, {'i', 's'}),
-                      }
-                    }
-          '';
+          config = builtins.readFile ./cmpConf.lua;
 
         }
 
