@@ -22,7 +22,7 @@ cmp.setup{
     --documentation = cmp.config.window.bordered(),
   },
   formatting = {
-    fields = { "kind", "abbr", "menu" },
+    fields = { "kind", "abbr" },
     format = function(entry, vim_item)
       local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
       local strings = vim.split(kind.kind, "%s", { trimempty = true })
