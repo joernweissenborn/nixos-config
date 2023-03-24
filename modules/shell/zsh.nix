@@ -38,9 +38,9 @@
           file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         }
         {
-          file = "p10k.zsh";
           name = "powerlevel10k-config";
           src = lib.cleanSource ./p10kconf;
+          file = "p10k.zsh";
         }
       ];
       initExtra = ''

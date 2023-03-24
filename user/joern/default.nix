@@ -18,6 +18,7 @@
           "FiraCode"
         ];
       })
+      helvetica-neue-lt-std
 
       # Terminal
       btop # Resource Manager
