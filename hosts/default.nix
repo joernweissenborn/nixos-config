@@ -46,6 +46,11 @@ in
       nixos-hardware.nixosModules.lenovo-thinkpad-x260
     ];
   };
+  deepspace9 = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "deepspace9";
+  };
   vbox = mkHost {
     inherit user;
     inherit stateVersion;
