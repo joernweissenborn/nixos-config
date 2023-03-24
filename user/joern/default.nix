@@ -40,9 +40,9 @@
       pre-commit
 
       # browser
-      google-chrome
-      firefox
-      vivaldi
+      # google-chrome
+      # firefox
+      # vivaldi
     ];
     sessionVariables = {
       EDITOR = "nvim";
