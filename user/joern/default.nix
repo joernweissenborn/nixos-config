@@ -1,5 +1,6 @@
-{ lib, pkgs, user, stateVersion, ... }:
+{ lib, pkgs, user, stateVersion, imports, ... }:
 {
+  inherit imports;
 
   home = {
     inherit stateVersion;
@@ -59,9 +60,5 @@
   programs = {
     home-manager.enable = true;
   };
-  imports =
-    (import ../../modules/editors) ++
-    (import ../../modules/terminals) ++
-    (import ../../modules/shell);
 
 }

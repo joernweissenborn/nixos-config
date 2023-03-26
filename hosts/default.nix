@@ -9,7 +9,7 @@ let
   };
 
   lib = nixpkgs.lib;
-  mkHost = { user, hostName, extraModules ? [ ], stateVersion }: lib.nixosSystem {
+  mkHost = { user, hostName, extraModules ? [ ], extraHome ? [ ], stateVersion, homeModules ? [ ] }: lib.nixosSystem {
     # Laptop
     inherit system;
     specialArgs = {
@@ -31,7 +31,15 @@ let
           };
         };
         home-manager.users.${user} = {
-          imports = [ (import ../user/${user} { inherit lib pkgs user stateVersion; }) ];
+          imports = [
+            (import ../user/${user} {
+              inherit lib pkgs user stateVersion;
+              imports =
+                (import ../modules/editors) ++
+                  (import ../modules/shell) ++
+                  homeModules;
+            })
+          ] ++ extraHome;
         };
       }
     ] ++ extraModules;
@@ -45,6 +53,10 @@ in
     extraModules = [
       nixos-hardware.nixosModules.lenovo-thinkpad-x260
     ];
+    extraHome = [
+      ../modules/browser
+    ];
+    homeModules = (import ../modules/terminals);
   };
   deepspace9 = mkHost {
     inherit user;
