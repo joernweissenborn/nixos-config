@@ -10,7 +10,6 @@ let
 
   lib = nixpkgs.lib;
   mkHost = { user, hostName, extraModules ? [ ], extraHome ? [ ], stateVersion, homeModules ? [ ] }: lib.nixosSystem {
-    # Laptop
     inherit system;
     specialArgs = {
       inherit inputs user location stateVersion;
@@ -57,6 +56,11 @@ in
       ../modules/browser
     ];
     homeModules = (import ../modules/terminals);
+  };
+  tina-wsl = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "tina";
   };
   deepspace9 = mkHost {
     inherit user;
