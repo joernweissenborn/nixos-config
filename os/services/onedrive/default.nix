@@ -1,0 +1,8 @@
+{ ... }:
+{
+  services = {
+    onedrive = {
+      enable = true;
+    };
+  };
+}

@@ -66,6 +66,7 @@ in
     ];
     extraHome = [
       ../modules/browser
+      ../modules/nitrokey
     ];
     homeModules = (import ../modules/terminals);
   };
