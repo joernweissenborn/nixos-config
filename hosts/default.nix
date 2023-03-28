@@ -67,6 +67,7 @@ in
     extraHome = [
       ../modules/browser
       ../modules/nitrokey
+      ../modules/git/git_tocadero.nix
     ];
     homeModules = (import ../modules/terminals);
   };
