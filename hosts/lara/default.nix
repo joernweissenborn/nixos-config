@@ -12,6 +12,7 @@
       ../../os/default.nix
       ../../os/services/pipewire/default.nix
       ../../os/services/ssh/default.nix
+      ../../os/services/gpg2
       ../../os/services/onedrive
       ../../modules/desktop/gnome/default.nix # Window Manager
     ];
