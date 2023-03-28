@@ -57,6 +57,18 @@ in
     ];
     homeModules = (import ../modules/terminals);
   };
+  lara = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "lara";
+    extraModules = [
+      nixos-hardware.nixosModules.lenovo-thinkpad-x260
+    ];
+    extraHome = [
+      ../modules/browser
+    ];
+    homeModules = (import ../modules/terminals);
+  };
   tina-wsl = mkHost {
     inherit user;
     inherit stateVersion;
