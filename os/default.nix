@@ -3,7 +3,18 @@
   users.users.${user} = {
     # System User
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "kvm" "libvirtd" "plex" ];
+    extraGroups = [
+      "audio"
+      "camera"
+      "docker"
+      "kvm"
+      "libvirtd"
+      "lp"
+      "networkmanager"
+      "plex"
+      "video"
+      "wheel"
+    ];
     shell = pkgs.zsh; # Default shell
   };
 
