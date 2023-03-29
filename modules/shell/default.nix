@@ -1,3 +1,4 @@
 [
+  ./zellij.nix
   ./zsh.nix
 ]
