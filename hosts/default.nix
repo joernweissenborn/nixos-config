@@ -54,6 +54,7 @@ in
     ];
     extraHome = [
       ../modules/browser
+      ../modules/git/git_gmail.nix
     ];
     homeModules = (import ../modules/terminals);
   };
@@ -75,15 +76,24 @@ in
     inherit user;
     inherit stateVersion;
     hostName = "tina";
+    extraHome = [
+      ../modules/git/git_gmail.nix
+    ];
   };
   deepspace9 = mkHost {
     inherit user;
     inherit stateVersion;
     hostName = "deepspace9";
+    extraHome = [
+      ../modules/git/git_gmail.nix
+    ];
   };
   vbox = mkHost {
     inherit user;
     inherit stateVersion;
     hostName = "vbox";
+    extraHome = [
+      ../modules/git/git_gmail.nix
+    ];
   };
 }
