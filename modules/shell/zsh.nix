@@ -54,6 +54,7 @@
         POWERLEVEL9K_DIR_SHOW_WRITABLE=true
 
         emulate zsh -c "$(direnv hook zsh)"
+        export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
       '';
     };
   };
