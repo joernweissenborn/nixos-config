@@ -24,6 +24,7 @@
       # Terminal
       btop # Resource Manager
       ranger # File Manager
+      ncdu
       tldr # Helper
       killall
       pciutils
