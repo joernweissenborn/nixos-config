@@ -195,6 +195,7 @@
             [
               bash
               c
+              cpp
               dockerfile
               git_rebase
               help
@@ -208,6 +209,8 @@
               meson
               nix
               python
+              qmldir
+              qmljs
               regex
               rust
               sql
