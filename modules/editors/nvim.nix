@@ -198,7 +198,6 @@
               cpp
               dockerfile
               git_rebase
-              help
               html
               tree-sitter-go
               json

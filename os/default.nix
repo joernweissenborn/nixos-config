@@ -17,6 +17,7 @@
     ];
     shell = pkgs.zsh; # Default shell
   };
+  programs.zsh.enable = true;
 
   time.timeZone = "Europe/Berlin"; # Time zone and internationalisation
   i18n = {
