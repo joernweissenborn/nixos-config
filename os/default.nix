@@ -6,6 +6,7 @@
     extraGroups = [
       "audio"
       "camera"
+      "dialout"
       "docker"
       "kvm"
       "libvirtd"

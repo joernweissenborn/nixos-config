@@ -26,6 +26,7 @@ vim.keymap.set('n', '<C-f>', function()
 vim.lsp.buf.format { async = true }
 end, bufopts)
 end
+lspconfig.arduino_language_server.setup{}
 lspconfig.yamlls.setup{on_attach=on_attach}
 lspconfig.rnix.setup{on_attach=on_attach}
 lspconfig.marksman.setup{on_attach=on_attach}

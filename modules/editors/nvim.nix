@@ -12,6 +12,8 @@
       vimAlias = true;
 
       extraPackages = with pkgs; [
+        arduino-cli
+        arduino-language-server
         clang-tools
         ctags
         gopls
