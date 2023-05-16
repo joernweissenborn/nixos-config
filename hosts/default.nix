@@ -36,6 +36,7 @@ let
               imports =
                 (import ../modules/editors) ++
                   (import ../modules/shell) ++
+                  (import ../modules/ssh) ++
                   homeModules;
             })
           ] ++ extraHome;
