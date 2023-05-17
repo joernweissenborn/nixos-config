@@ -5,6 +5,10 @@
   services = {
     xserver = {
       enable = true;
+      exportConfiguration = true; # link /usr/share/X11/ properly
+      layout = "us,de";
+      xkbOptions = "eurosign:e, compose:menu, grp:alt_space_toggle";
+
 
 
       displayManager.gdm.enable = true; # Display Manager
