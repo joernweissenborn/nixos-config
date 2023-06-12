@@ -26,7 +26,6 @@
       ranger # File Manager
       ncdu
       tldr # Helper
-      killall
       pciutils
       usbutils
 
@@ -41,10 +40,8 @@
       python3
       pre-commit
 
-      # browser
-      # google-chrome
-      # firefox
-      # vivaldi
+      # utils 
+      busybox
     ];
     sessionVariables = {
       EDITOR = "nvim";
