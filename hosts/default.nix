@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, user, stateVersion, location, nixos-hardware, ... }:
+{ lib, inputs, nixpkgs, home-manager, user, stateVersion, location, nixos-hardware, nixos-wsl , ... }:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -76,7 +76,10 @@ in
   tina-wsl = mkHost {
     inherit user;
     inherit stateVersion;
-    hostName = "tina";
+    hostName = "tina-wsl";
+    extraModules = [
+      nixos-wsl.nixosModules.wsl
+    ];
     extraHome = [
       ../modules/git/git_gmail.nix
     ];

@@ -6,6 +6,8 @@
       nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages
       nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+      nixos-wsl.url = "github:nix-community/nixos-wsl";
+
       home-manager = {
         # User Package Management
         url = "github:nix-community/home-manager";
@@ -13,7 +15,7 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixos-hardware, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-hardware, nixos-wsl }:
     let
       location = "$HOME/.setup";
       user = "joern";
@@ -26,6 +28,7 @@
           inherit inputs;
           inherit location;
           inherit nixos-hardware;
+          inherit nixos-wsl;
           inherit nixpkgs;
           inherit (nixpkgs) lib;
           inherit user;
