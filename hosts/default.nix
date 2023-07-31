@@ -64,7 +64,7 @@ in
     inherit stateVersion;
     hostName = "lara";
     extraModules = [
-      nixos-hardware.nixosModules.lenovo-thinkpad-x260
+      nixos-hardware.nixosModules.lenovo-thinkpad-t14
     ];
     extraHome = [
       ../modules/browser

@@ -8,20 +8,20 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/aaec7722-7166-4b1a-b03f-03bd4a37c7a0";
+    { device = "/dev/disk/by-uuid/eaf191d3-6e29-4bd8-9b83-673a4dbf3d52";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."luks-48752992-d62e-429c-93f9-19ac5a3888ea".device = "/dev/disk/by-uuid/48752992-d62e-429c-93f9-19ac5a3888ea";
+  boot.initrd.luks.devices."luks-94514883-7a04-4fa7-b747-c4f852d66a35".device = "/dev/disk/by-uuid/94514883-7a04-4fa7-b747-c4f852d66a35";
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/0CB1-DC4E";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/C82E-877C";
       fsType = "vfat";
     };
 
@@ -32,8 +32,8 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
