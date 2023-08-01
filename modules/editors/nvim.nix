@@ -43,7 +43,6 @@
         cmp-path
         vim-airline-themes
         vim-better-whitespace
-        vim-colors-solarized
         vim-nix
         vim-markdown
         vim-sleuth # guess indentation

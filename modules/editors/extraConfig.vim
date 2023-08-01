@@ -1,7 +1,6 @@
 set noswapfile
 let mapleader = ","
 syntax enable
-colorscheme solarized
 
 set tw=0 " No Auto insert newline
 set number
