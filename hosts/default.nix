@@ -55,6 +55,7 @@ in
     ];
     extraHome = [
       ../modules/browser
+      ../modules/nitrokey
       ../modules/git/git_gmail.nix
     ];
     homeModules = (import ../modules/terminals);
