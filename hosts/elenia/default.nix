@@ -13,6 +13,7 @@
       ../../os/services/pipewire/default.nix
       ../../os/services/ssh/default.nix
       ../../modules/desktop/gnome/default.nix # Window Manager
+      ../../os/services/gpg2
     ];
 
   # Bootloader.
