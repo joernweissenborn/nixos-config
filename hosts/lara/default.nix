@@ -30,6 +30,8 @@
   networking.extraHosts =
   ''
     10.179.101.54 gitlab.tocadero.srservers.net
+    10.179.101.54 pages.tocadero.srservers.net
+    10.179.101.54 analyzer.pages.tocadero.srservers.net
   '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
