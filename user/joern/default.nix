@@ -26,6 +26,7 @@
       ranger # File Manager
       ncdu
       tldr # Helper
+      tmate
       pciutils
       usbutils
 
@@ -40,7 +41,7 @@
       python3
       pre-commit
 
-      # utils 
+      # utils
       busybox
     ];
     sessionVariables = {
