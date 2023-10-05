@@ -51,7 +51,7 @@ in
     inherit stateVersion;
     hostName = "elenia";
     extraModules = [
-      nixos-hardware.nixosModules.lenovo-thinkpad-t14.amd.gen1
+      nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
     ];
     extraHome = [
       ../modules/browser
