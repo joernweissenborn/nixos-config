@@ -9,7 +9,7 @@ let
   };
 
   lib = nixpkgs.lib;
-  mkHost = { user, hostName, extraModules ? [ ], extraHome ? [ ], stateVersion, homeModules ? [ ] }: lib.nixosSystem {
+  mkHost = { user, hostName, hostModule ? hostName, extraModules ? [ ], extraHome ? [ ], stateVersion, homeModules ? [ ] }: lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs user location stateVersion;
@@ -18,7 +18,7 @@ let
       };
     };
     modules = [
-      ./${hostName}
+      ./${hostModule}
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
@@ -50,6 +50,21 @@ in
     inherit user;
     inherit stateVersion;
     hostName = "elenia";
+    extraModules = [
+      nixos-hardware.nixosModules.lenovo-thinkpad-t14.amd.gen1
+    ];
+    extraHome = [
+      ../modules/browser
+      ../modules/nitrokey
+      ../modules/git/git_gmail_nitrokey.nix
+    ];
+    homeModules = (import ../modules/terminals);
+  };
+  elenia_x260 = mkHost {
+    inherit user;
+    inherit stateVersion;
+    hostName = "elenia";
+    hostModule = "elenia_x260";
     extraModules = [
       nixos-hardware.nixosModules.lenovo-thinkpad-x260
     ];
