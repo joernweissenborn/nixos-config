@@ -52,11 +52,12 @@ in
     hostName = "elenia";
     extraModules = [
       nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
+      ../modules/steam
     ];
     extraHome = [
       ../modules/browser
-      ../modules/nitrokey
       ../modules/git/git_gmail_nitrokey.nix
+      ../modules/nitrokey
     ];
     homeModules = (import ../modules/terminals);
   };
