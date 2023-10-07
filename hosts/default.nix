@@ -61,11 +61,10 @@ in
     ];
     homeModules = (import ../modules/terminals);
   };
-  elenia_x260 = mkHost {
+  tara = mkHost {
     inherit user;
     inherit stateVersion;
-    hostName = "elenia";
-    hostModule = "elenia_x260";
+    hostName = "tara";
     extraModules = [
       nixos-hardware.nixosModules.lenovo-thinkpad-x260
     ];
