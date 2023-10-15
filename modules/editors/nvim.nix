@@ -126,6 +126,21 @@
           '';
         }
         {
+          plugin = neogen;
+          type = "lua";
+          config = ''
+          require('neogen').setup {
+            languages = {
+            python = {
+              template = {
+                annotation_convention = "numpydoc",
+              }
+            }
+           }
+          }
+          '';
+        }
+        {
           plugin = null-ls-nvim;
           type = "lua";
           config = ''
