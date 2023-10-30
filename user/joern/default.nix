@@ -43,6 +43,7 @@
 
       # utils
       busybox
+      signal-desktop
     ];
     sessionVariables = {
       EDITOR = "nvim";
