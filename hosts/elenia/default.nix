@@ -24,5 +24,6 @@
   networking.networkmanager.enable = true;
 
   services.fprintd.enable = true;
+  services.fwupd.enable = true;
 
 }
