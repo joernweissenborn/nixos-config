@@ -25,5 +25,6 @@
 
   services.fprintd.enable = true;
   services.fwupd.enable = true;
+  services.teamviewer.enable = true;
 
 }
