@@ -45,5 +45,7 @@
 
   virtualisation.docker.enable = true;
   services.fprintd.enable = true;
+  services.fwupd.enable = true;
+  services.teamviewer.enable = true;
 
 }
