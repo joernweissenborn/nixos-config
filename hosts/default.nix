@@ -58,6 +58,7 @@ in
       ../modules/browser
       ../modules/git/git_gmail_nitrokey.nix
       ../modules/nitrokey
+      ../modules/inkscape
     ];
     homeModules = (import ../modules/terminals);
   };
