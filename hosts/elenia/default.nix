@@ -26,5 +26,8 @@
   services.fprintd.enable = true;
   services.fwupd.enable = true;
   services.teamviewer.enable = true;
+  services.udev.packages = with pkgs; [
+    vial
+  ];
 
 }
