@@ -29,5 +29,6 @@
   services.udev.packages = with pkgs; [
     vial
   ];
+  programs.nix-ld.enable = true;
 
 }
