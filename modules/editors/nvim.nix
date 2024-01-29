@@ -22,6 +22,7 @@
         nil
         qt5.qtdeclarative
         rnix-lsp
+        ruff-lsp
         yaml-language-server
       ] ++ (with python3Packages; [
         black
@@ -147,8 +148,8 @@
             null_ls = require("null-ls")
             null_ls.setup({
               sources = {
-                null_ls.builtins.formatting.isort,
-                null_ls.builtins.formatting.black,
+                -- null_ls.builtins.formatting.isort,
+                -- null_ls.builtins.formatting.black,
                 null_ls.builtins.diagnostics.qmllint,
                 null_ls.builtins.formatting.qmlformat,
               },

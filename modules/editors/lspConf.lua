@@ -49,22 +49,29 @@ pylsp = {
 },
 }
 lspconfig.pyright.setup{
-settings = {
-python = {
-  analysis = {
-    autoSearchPaths = true,
-    diagnosticMode = "workspace",
-    useLibraryCodeForTypes = true,
-    typeCheckingMode = 'basic',
-    diagnosticSeverityOverrides = {
-      reportUnknownMemberType = 'info',
-      reportUnknownArgumentType = 'info',
-      reportUnknownParameterType = 'info',
-      reportUnknownVariableType = 'info',
+  settings = {
+    python = {
+      analysis = {
+	autoSearchPaths = true,
+	diagnosticMode = "workspace",
+	useLibraryCodeForTypes = true,
+	typeCheckingMode = 'off',
+	diagnosticSeverityOverrides = {
+	  -- reportUnknownMemberType = 'info',
+	  -- reportUnknownArgumentType = 'info',
+	  -- reportUnknownParameterType = 'info',
+	  -- reportUnknownVariableType = 'info',
+	},
+      },
     },
   },
-},
-},
+}
+lspconfig.ruff_lsp.setup {
+  on_attach = function(client, bufnr)
+  -- Disable hover in favor of Pyright
+  client.server_capabilities.hoverProvider = false
+end
+,
 }
 lspconfig.clangd.setup{
 on_attach = on_attach,
