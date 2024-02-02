@@ -28,7 +28,6 @@
         black
         isort
         pyright
-        python-lsp-server
       ]);
 
       extraConfig = builtins.readFile ./extraConfig.vim;
