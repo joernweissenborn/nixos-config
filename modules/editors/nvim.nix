@@ -35,6 +35,7 @@
       plugins = with pkgs.vimPlugins; [
         auto-pairs
         copilot-vim
+        luasnip
         nvim-lspconfig
         nvim-web-devicons
         lspkind-nvim

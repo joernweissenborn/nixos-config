@@ -5,7 +5,7 @@ local check_backspace = function()
   local col = vim.fn.col(".") - 1
   return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
-cmp.setup{
+cmp.setup({
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
   }, {
@@ -63,5 +63,10 @@ select = true,
 	fallback()
       end
     end, {'i', 's'}),
-  }
-}
+  },
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
+})
