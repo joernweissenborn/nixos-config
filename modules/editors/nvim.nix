@@ -21,7 +21,6 @@
         nodejs
         nil
         qt5.qtdeclarative
-        rnix-lsp
         ruff-lsp
         yaml-language-server
       ] ++ (with python3Packages; [

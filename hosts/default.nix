@@ -57,7 +57,7 @@ in
     extraHome = [
       ../modules/browser
       ../modules/git/git_gmail_nitrokey.nix
-      ../modules/nitrokey
+      # ../modules/nitrokey
       ../modules/inkscape
       ../modules/vial
     ];

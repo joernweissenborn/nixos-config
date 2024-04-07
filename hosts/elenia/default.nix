@@ -30,5 +30,6 @@
     vial
   ];
   programs.nix-ld.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
 }
