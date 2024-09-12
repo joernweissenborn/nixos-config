@@ -40,6 +40,7 @@
       direnv
       python3
       pre-commit
+      zed-editor.fhs
 
       # utils
       busybox
