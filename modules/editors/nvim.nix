@@ -212,6 +212,7 @@
         {
           plugin = (nvim-treesitter.withPlugins (plugins: with plugins;
             [
+              arduino
               bash
               c
               cpp
