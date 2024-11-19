@@ -15,7 +15,7 @@
       desktopManager.gnome.enable = true; # Window Manager
     };
     udev.packages = with pkgs; [
-      gnome.gnome-settings-daemon
+      gnome-settings-daemon
     ];
   };
 
@@ -24,15 +24,14 @@
   environment = {
     systemPackages = with pkgs; [
       # Packages installed
-      gnome.dconf-editor
-      gnome.gnome-tweaks
-      gnome.adwaita-icon-theme
+      dconf-editor
+      gnome-tweaks
+      adwaita-icon-theme
     ];
     gnome.excludePackages = (with pkgs; [
       # Gnome ignored packages
       gnome-photos
       gnome-tour
-    ]) ++ (with pkgs.gnome; [
       epiphany
       geary
       gnome-characters
