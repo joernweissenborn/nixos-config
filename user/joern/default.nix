@@ -41,6 +41,7 @@
       busybox
       # signal-desktop
       openfortivpn
+      vlc
     ];
     sessionVariables = {
       EDITOR = "nvim";
