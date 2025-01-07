@@ -13,12 +13,7 @@
       # Fonts
       carlito # NixOS
       vegur # NixOS
-      (nerdfonts.override {
-        # Nerdfont Icons override
-        fonts = [
-          "FiraCode"
-        ];
-      })
+      nerd-fonts.fira-code
       helvetica-neue-lt-std
 
       # Terminal
@@ -44,7 +39,7 @@
 
       # utils
       busybox
-      signal-desktop
+      # signal-desktop
       openfortivpn
     ];
     sessionVariables = {
