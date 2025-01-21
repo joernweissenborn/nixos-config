@@ -19,7 +19,7 @@
     let
       location = "$HOME/.setup";
       user = "joern";
-      stateVersion = "23.11";
+      stateVersion = "24.11";
     in
     {
       nixosConfigurations = (
