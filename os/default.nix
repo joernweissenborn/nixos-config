@@ -18,6 +18,13 @@
     ];
     shell = pkgs.zsh; # Default shell
   };
+  users.users.nixbld1 = {
+    isSystemUser = true;
+    group = "nixbld";
+    extraGroups = [
+      "docker"
+    ];
+  };
   programs.zsh.enable = true;
 
   time.timeZone = "Europe/Berlin"; # Time zone and internationalisation
@@ -29,6 +36,7 @@
       LC_MONETARY = "de_DE.UTF-8";
     };
   };
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   console = {
     font = "Lat2-Terminus16";
@@ -44,6 +52,7 @@
   nix = {
     # Nix Package Manager settings
     settings = {
+      trusted-users = [ user ];
       auto-optimise-store = true; # Optimise syslinks
     };
     gc = {
@@ -61,6 +70,12 @@
     '';
   };
   nixpkgs.config.allowUnfree = true; # Allow proprietary software.
+
+  systemd.services.nix-daemon = {
+    serviceConfig = {
+      Environment = "NETRC=~./netrc";
+    };
+  };
 
   system = {
     inherit stateVersion;

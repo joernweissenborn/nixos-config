@@ -32,10 +32,9 @@
       zip # Zip
 
       # dev tools
-      direnv
       python3
       pre-commit
-      zed-editor.fhs
+      # zed-editor.fhs
 
       # utils
       busybox
