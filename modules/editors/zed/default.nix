@@ -14,6 +14,24 @@
       "json"
     ];
 
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+        };
+      }
+      {
+        context = "Editor";
+        bindings = {
+          ctrl-f = "editor::Format";
+          ctrl-up = "editor::MoveLineUp";
+          ctrl-down = "editor::MoveLineDown";
+          "g d" = "editor::GoToDefinition";
+          ", r" = "editor::Rename";
+        };
+      }
+    ];
+
     ## everything inside of these brackets are Zed options.
     userSettings = {
 
