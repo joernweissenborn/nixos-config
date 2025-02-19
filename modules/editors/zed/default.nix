@@ -47,6 +47,10 @@
 
       hour_format = "hour24";
       auto_update = false;
+
+      ui_font_size = 14;
+      buffer_font_size = 14;
+
       terminal = {
         alternate_scroll = "off";
         blinking = "off";
@@ -66,9 +70,9 @@
         env = {
           TERM = "alacritty";
         };
+        font_size = 14;
         font_family = "FiraCode Nerd Font";
         font_features = null;
-        font_size = null;
         line_height = "comfortable";
         option_as_meta = false;
         button = false;
@@ -161,8 +165,6 @@
         dark = "Rosé Pine Moon";
       };
       show_whitespaces = "all";
-      ui_font_size = 16;
-      buffer_font_size = 16;
 
     };
 
