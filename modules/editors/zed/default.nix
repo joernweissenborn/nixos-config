@@ -24,8 +24,9 @@
         context = "Editor";
         bindings = {
           ctrl-f = "editor::Format";
-          ctrl-up = "editor::MoveLineUp";
-          ctrl-down = "editor::MoveLineDown";
+          shift-up = "editor::MoveLineUp";
+          shift-down = "editor::MoveLineDown";
+          "ctrl-\\" = "editor::ToggleComments";
           "g d" = "editor::GoToDefinition";
           ", r" = "editor::Rename";
         };
@@ -83,7 +84,7 @@
 
       languages = {
         Python = {
-          language_servers = [ "ruff" ];
+          language_servers = [  "pyright" "ruff" ];
           formatter = [
             {
               code_actions = {
@@ -144,9 +145,6 @@
         after_delay = {
           milliseconds = 1000;
         };
-      };
-
-      languages = {
       };
 
       vim_mode = true;
