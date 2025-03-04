@@ -24,6 +24,7 @@
         context = "Editor";
         bindings = {
           ctrl-f = "editor::Format";
+          ctrl-d = "editor::DuplicateLineUp";
           shift-up = "editor::MoveLineUp";
           shift-down = "editor::MoveLineDown";
           "ctrl-\\" = "editor::ToggleComments";
@@ -41,7 +42,7 @@
         version = "2";
         default_model = {
           provider = "copilot_chat";
-          model = "gpt-4o";
+          model = "claude-3-7-sonnet";
         };
       };
 
@@ -49,7 +50,8 @@
       auto_update = false;
 
       ui_font_size = 14;
-      buffer_font_size = 14;
+      buffer_font_size = 12;
+      terminal_font_size = 12;
 
       terminal = {
         alternate_scroll = "off";
@@ -162,7 +164,7 @@
       theme = {
         mode = "system";
         light = "One Light";
-        dark = "Rosé Pine Moon";
+        dark = "Gruvbox Dark";
       };
       show_whitespaces = "all";
 
