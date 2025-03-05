@@ -90,7 +90,10 @@
 
       languages = {
         Python = {
-          language_servers = [  "pyright" "ruff" ];
+          language_servers = [
+            "pyright"
+            "ruff"
+          ];
           formatter = [
             {
               code_actions = {
@@ -104,6 +107,17 @@
               };
             }
           ];
+        };
+        Nix = {
+          language_servers = [
+            "nil"
+            "!nixd"
+          ];
+          formatter = {
+            external = {
+              command = (toString (lib.getExe pkgs.nixfmt-rfc-style));
+            };
+          };
         };
       };
 
@@ -124,11 +138,11 @@
             path = lib.getExe pkgs.nil;
             path_lookup = true;
           };
-          initialization_options = {
-            formatting = {
-              command = [ (toString (lib.getExe pkgs.nixfmt-rfc-style)) ];
-            };
-          };
+          # initialization_options = {
+          #   formatting = {
+          #     command = [ (toString (lib.getExe pkgs.nixfmt-rfc-style)) ];
+          #   };
+          # };
         };
         ruff = {
           binary = {
