@@ -109,10 +109,10 @@
           ];
         };
         Nix = {
-          language_servers = [
-            "nil"
-            "!nixd"
-          ];
+          # language_servers = [
+          #   "nil"
+          #   "!nixd"
+          # ];
           formatter = {
             external = {
               command = (toString (lib.getExe pkgs.nixfmt-rfc-style));
