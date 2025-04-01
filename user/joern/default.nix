@@ -41,6 +41,7 @@
       # signal-desktop
       openfortivpn
       vlc
+      cinny
     ];
     sessionVariables = {
       EDITOR = "nvim";
