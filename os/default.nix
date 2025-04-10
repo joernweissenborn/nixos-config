@@ -26,6 +26,9 @@
     ];
   };
   programs.zsh.enable = true;
+  environment = {
+     systemPackages = [ pkgs.qemu ];
+   };
 
   time.timeZone = "Europe/Berlin"; # Time zone and internationalisation
   i18n = {
