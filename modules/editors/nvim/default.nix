@@ -21,7 +21,6 @@
         nodejs
         nil
         qt5.qtdeclarative
-        ruff-lsp
         yaml-language-server
       ] ++ (with python3Packages; [
         black

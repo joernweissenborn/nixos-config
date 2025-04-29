@@ -43,7 +43,7 @@
           file = "p10k.zsh";
         }
       ];
-      initExtra = ''
+      initContent = ''
         # Powerlevel9k
         [[ ! -f ~/.zsh/plugins/powerlevel10k-config/p10k.zsh ]] || source ~/.zsh/plugins/powerlevel10k-config/p10k.zsh
 
