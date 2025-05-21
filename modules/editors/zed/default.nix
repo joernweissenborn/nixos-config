@@ -32,6 +32,12 @@
           ", r" = "editor::Rename";
         };
       }
+      {
+        context = "ContextEditor > Editor";
+        bindings = {
+          ctrl-enter = "assistant::Assist";
+        };
+      }
     ];
 
     ## everything inside of these brackets are Zed options.
