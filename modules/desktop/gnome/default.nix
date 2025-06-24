@@ -3,9 +3,9 @@
 {
 
   services = {
+    desktopManager.gnome.enable = true; # Window Manager
+    displayManager.gdm.enable = true; # Display Manager
     xserver = {
-      desktopManager.gnome.enable = true; # Window Manager
-      displayManager.gdm.enable = true; # Display Manager
       enable = true;
       exportConfiguration = true; # link /usr/share/X11/ properly
       xkb.layout = "us,de";
