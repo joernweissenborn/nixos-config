@@ -43,12 +43,12 @@
     ## everything inside of these brackets are Zed options.
     userSettings = {
 
-      assistant = {
+      agent = {
         enabled = true;
         version = "2";
         default_model = {
           provider = "copilot_chat";
-          model = "claude-3-7-sonnet";
+          model = "gemini-2.5-flash";
         };
       };
 
