@@ -1,17 +1,18 @@
-{ pkgs, lib, ... }:
+{pkgs, lib, ... }:
 
 {
   programs.zed-editor = {
     enable = true;
     extensions = [
-      "nix"
-      "toml"
-      "python"
-      "ruff"
-      "make"
-      "yaml"
       "go"
       "json"
+      "make"
+      "nix"
+      "python"
+      "ruff"
+      "slint"
+      "toml"
+      "yaml"
     ];
 
     userKeymaps = [
@@ -44,11 +45,10 @@
     userSettings = {
 
       agent = {
-        enabled = true;
-        version = "2";
+        play_sound_when_agent_done = true;
         default_model = {
           provider = "copilot_chat";
-          model = "gemini-2.5-flash";
+          model = "gemini-2.5-pro";
         };
       };
 
@@ -125,6 +125,9 @@
             };
           };
         };
+        Slint = {
+          language_servers = ["slint-lsp"];
+        };
       };
 
       lsp = {
@@ -163,6 +166,12 @@
                 extendSelect = [ "I" ];
               };
             };
+          };
+        };
+        slint-lsp = {
+          binary = {
+            path = lib.getExe pkgs.slint-lsp;
+            path_lookup = true;
           };
         };
       };

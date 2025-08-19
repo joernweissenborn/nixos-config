@@ -42,6 +42,7 @@
       openfortivpn
       vlc
       cinny
+      mattermost-desktop
     ];
     sessionVariables = {
       EDITOR = "nvim";
