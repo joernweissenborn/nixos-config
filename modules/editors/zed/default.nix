@@ -48,16 +48,16 @@
         play_sound_when_agent_done = true;
         default_model = {
           provider = "copilot_chat";
-          model = "gemini-2.5-pro";
+          model = "claude-sonnet-4";
         };
       };
-
-      hour_format = "hour24";
+      features = {
+        edit_prediction_provider = "copilot";
+      };
       auto_update = false;
 
       ui_font_size = 14;
       buffer_font_size = 12;
-      terminal_font_size = 12;
 
       terminal = {
         alternate_scroll = "off";
@@ -78,19 +78,13 @@
         env = {
           TERM = "alacritty";
         };
-        font_size = 14;
+        font_size = 12;
         font_family = "FiraCode Nerd Font";
         font_features = null;
         line_height = "comfortable";
         option_as_meta = false;
         button = false;
         shell = "system";
-        #{
-        #                    program = "zsh";
-        #};
-        toolbar = {
-          title = true;
-        };
         working_directory = "current_project_directory";
       };
 
@@ -125,27 +119,21 @@
             };
           };
         };
-        Slint = {
-          language_servers = ["slint-lsp"];
-        };
       };
 
       lsp = {
         nix = {
           binary = {
-            path_lookup = true;
           };
         };
         nixd = {
           binary = {
             path = lib.getExe pkgs.nixd;
-            path_lookup = true;
           };
         };
         nil = {
           binary = {
             path = lib.getExe pkgs.nil;
-            path_lookup = true;
           };
           # initialization_options = {
           #   formatting = {
@@ -157,7 +145,6 @@
           binary = {
             path = lib.getExe pkgs.ruff;
             arguments = [ "server" ];
-            path_lookup = true;
           };
           initialization_options = {
             settings = {
@@ -168,10 +155,14 @@
             };
           };
         };
-        slint-lsp = {
+        package-version-server = {
+          binary = {
+            path = lib.getExe pkgs.package-version-server;
+          };
+        };
+        slint = {
           binary = {
             path = lib.getExe pkgs.slint-lsp;
-            path_lookup = true;
           };
         };
       };
