@@ -32,8 +32,8 @@
 
       plugins = with pkgs.vimPlugins; [
         auto-pairs
-        copilot-vim
-        luasnip
+        # copilot-vim
+        # luasnip
         nvim-lspconfig
         nvim-web-devicons
         lspkind-nvim
@@ -91,69 +91,69 @@
             let g:indent_guides_enable_on_vim_startup = 1
           '';
         }
-        {
-          plugin = tagbar;
-          config = ''
-            nmap <F8> :TagbarToggle<CR>
-            let g:tagbar_type_go = {
-                \ 'ctagstype' : 'go',
-                \ 'kinds'     : [
-                    \ 'p:package',
-                    \ 'i:imports:1',
-                    \ 'c:constants',
-                    \ 'v:variables',
-                    \ 't:types',
-                    \ 'n:interfaces',
-                    \ 'w:fields',
-                    \ 'e:embedded',
-                    \ 'm:methods',
-                    \ 'r:constructor',
-                    \ 'f:functions'
-                \ ],
-                \ 'sro' : '.',
-                \ 'kind2scope' : {
-                    \ 't' : 'ctype',
-                    \ 'n' : 'ntype'
-                \ },
-                \ 'scope2kind' : {
-                    \ 'ctype' : 't',
-                    \ 'ntype' : 'n'
-                \ },
-                \ 'ctagsbin'  : 'gotags',
-                \ 'ctagsargs' : '-sort -silent'
-                \ }
-          '';
-        }
-        {
-          plugin = neogen;
-          type = "lua";
-          config = ''
-          require('neogen').setup {
-            languages = {
-            python = {
-              template = {
-                annotation_convention = "numpydoc",
-              }
-            }
-           }
-          }
-          '';
-        }
-        {
-          plugin = null-ls-nvim;
-          type = "lua";
-          config = ''
-            null_ls = require("null-ls")
-            null_ls.setup({
-              sources = {
-                -- null_ls.builtins.formatting.isort,
-                -- null_ls.builtins.formatting.black,
-                null_ls.builtins.diagnostics.qmllint,
-                null_ls.builtins.formatting.qmlformat,
-              },
-            })
-          '';
-        }
+        # {
+        #   plugin = tagbar;
+        #   config = ''
+        #     nmap <F8> :TagbarToggle<CR>
+        #     let g:tagbar_type_go = {
+        #         \ 'ctagstype' : 'go',
+        #         \ 'kinds'     : [
+        #             \ 'p:package',
+        #             \ 'i:imports:1',
+        #             \ 'c:constants',
+        #             \ 'v:variables',
+        #             \ 't:types',
+        #             \ 'n:interfaces',
+        #             \ 'w:fields',
+        #             \ 'e:embedded',
+        #             \ 'm:methods',
+        #             \ 'r:constructor',
+        #             \ 'f:functions'
+        #         \ ],
+        #         \ 'sro' : '.',
+        #         \ 'kind2scope' : {
+        #             \ 't' : 'ctype',
+        #             \ 'n' : 'ntype'
+        #         \ },
+        #         \ 'scope2kind' : {
+        #             \ 'ctype' : 't',
+        #             \ 'ntype' : 'n'
+        #         \ },
+        #         \ 'ctagsbin'  : 'gotags',
+        #         \ 'ctagsargs' : '-sort -silent'
+        #         \ }
+        #   '';
+        # }
+        # {
+        #   plugin = neogen;
+        #   type = "lua";
+        #   config = ''
+        #   require('neogen').setup {
+        #     languages = {
+        #     python = {
+        #       template = {
+        #         annotation_convention = "numpydoc",
+        #       }
+        #     }
+        #    }
+        #   }
+        #   '';
+        # }
+        # {
+        #   plugin = null-ls-nvim;
+        #   type = "lua";
+        #   config = ''
+        #     null_ls = require("null-ls")
+        #     null_ls.setup({
+        #       sources = {
+        #         -- null_ls.builtins.formatting.isort,
+        #         -- null_ls.builtins.formatting.black,
+        #         null_ls.builtins.diagnostics.qmllint,
+        #         null_ls.builtins.formatting.qmlformat,
+        #       },
+        #     })
+        #   '';
+        # }
         {
           plugin = nvim-colorizer-lua;
           type = "lua";

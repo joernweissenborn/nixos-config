@@ -3,7 +3,7 @@
 
   home = {
     packages = with pkgs; [
-      nitrokey-app
+      # nitrokey-app
       # pynitrokey
     ];
   };

@@ -43,7 +43,7 @@
       vlc
       cinny
       mattermost-desktop
-      element-desktop
+      # element-desktop
     ];
     sessionVariables = {
       EDITOR = "nvim";

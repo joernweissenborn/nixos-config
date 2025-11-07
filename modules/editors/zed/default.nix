@@ -4,6 +4,7 @@
   programs.zed-editor = {
     enable = true;
     extensions = [
+      "gitlab-ci-ls"
       "go"
       "json"
       "make"
@@ -122,6 +123,11 @@
       };
 
       lsp = {
+        gitlab-ci-ls = {
+          binary = {
+            path = lib.getExe pkgs.gitlab-ci-ls;
+          };
+        };
         nix = {
           binary = {
           };
