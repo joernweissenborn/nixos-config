@@ -7,7 +7,7 @@
       # browser
       google-chrome
       firefox
-      # microsoft-edge
+      microsoft-edge
       vivaldi
     ];
   };
