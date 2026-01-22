@@ -208,45 +208,45 @@
             map <S-\> ,cs
           '';
         }
-        {
-          plugin = (nvim-treesitter.withPlugins (plugins: with plugins;
-            [
-              arduino
-              bash
-              c
-              cpp
-              dockerfile
-              git_rebase
-              html
-              tree-sitter-go
-              json
-              json5
-              lua
-              markdown
-              markdown_inline
-              meson
-              nix
-              python
-              qmldir
-              qmljs
-              regex
-              rust
-              sql
-              toml
-              vim
-              yaml
-            ]));
-          type = "lua";
-          config = ''
-            require'nvim-treesitter.configs'.setup {
-              highlight = {
-                enable = true,
-                --additional_vim_regex_highlighting = false,
-              };
-            }
-            --vim.api.nvim_set_hl(0, "@none", { link = "Normal" })
-          '';
-        }
+        # {
+        #   plugin = (nvim-treesitter.withPlugins (plugins: with plugins;
+        #     [
+        #       arduino
+        #       bash
+        #       c
+        #       cpp
+        #       dockerfile
+        #       git_rebase
+        #       html
+        #       tree-sitter-go
+        #       json
+        #       json5
+        #       lua
+        #       markdown
+        #       markdown_inline
+        #       meson
+        #       nix
+        #       python
+        #       qmldir
+        #       qmljs
+        #       regex
+        #       rust
+        #       sql
+        #       toml
+        #       vim
+        #       yaml
+        #     ]));
+        #   type = "lua";
+        #   config = ''
+        #     require'nvim-treesitter.configs'.setup {
+        #       highlight = {
+        #         enable = true,
+        #         --additional_vim_regex_highlighting = false,
+        #       };
+        #     }
+        #     --vim.api.nvim_set_hl(0, "@none", { link = "Normal" })
+        #   '';
+        # }
         {
           plugin = lsp_signature-nvim;
           type = "lua";
