@@ -1,4 +1,4 @@
-{pkgs, lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.zed-editor = {
@@ -46,61 +46,53 @@
     userSettings = {
 
       agent = {
-        play_sound_when_agent_done = true;
         default_model = {
           provider = "copilot_chat";
-          model = "claude-sonnet-4";
+          model = "claude-sonnet-4.5";
+        };
+        model_parameters = [ ];
+        play_sound_when_agent_done = true;
+      };
+      auto_install_extensions = {
+        gitlab-ci-ls = true;
+        go = true;
+        json = true;
+        make = true;
+        nix = true;
+        python = true;
+        ruff = true;
+        slint = true;
+        toml = true;
+        yaml = true;
+      };
+      auto_update = false;
+      autosave = {
+        after_delay = {
+          milliseconds = 1000;
         };
       };
+      base_keymap = "JetBrains";
+
+      buffer_font_size = 12;
       features = {
         edit_prediction_provider = "copilot";
       };
-      auto_update = false;
-
-      ui_font_size = 14;
-      buffer_font_size = 12;
-
-      terminal = {
-        alternate_scroll = "off";
-        blinking = "off";
-        copy_on_select = false;
-        dock = "bottom";
-        detect_venv = {
-          on = {
-            directories = [
-              ".env"
-              "env"
-              ".venv"
-              "venv"
-            ];
-            activate_script = "default";
-          };
-        };
-        env = {
-          TERM = "alacritty";
-        };
-        font_size = 12;
-        font_family = "FiraCode Nerd Font";
-        font_features = null;
-        line_height = "comfortable";
-        option_as_meta = false;
-        button = false;
-        shell = "system";
-        working_directory = "current_project_directory";
-      };
 
       languages = {
+        Nix = {
+          formatter = {
+            external = {
+              command = (toString (lib.getExe pkgs.nixfmt));
+            };
+          };
+        };
         Python = {
-          language_servers = [
-            "pyright"
-            "ruff"
-          ];
           formatter = [
             {
-              code_actions = {
-                "source.organizeImports.ruff" = true;
-                "source.fixAll.ruff" = true;
-              };
+              code_action = "source.fixAll.ruff";
+            }
+            {
+              code_action = "source.organizeImports.ruff";
             }
             {
               language_server = {
@@ -108,19 +100,13 @@
               };
             }
           ];
-        };
-        Nix = {
-          # language_servers = [
-          #   "nil"
-          #   "!nixd"
-          # ];
-          formatter = {
-            external = {
-              command = (toString (lib.getExe pkgs.nixfmt-rfc-style));
-            };
-          };
+          language_servers = [
+            "pyright"
+            "ruff"
+          ];
         };
       };
+      load_direnv = "shell_hook";
 
       lsp = {
         gitlab-ci-ls = {
@@ -141,11 +127,6 @@
           binary = {
             path = lib.getExe pkgs.nil;
           };
-          # initialization_options = {
-          #   formatting = {
-          #     command = [ (toString (lib.getExe pkgs.nixfmt-rfc-style)) ];
-          #   };
-          # };
         };
         ruff = {
           binary = {
@@ -172,27 +153,42 @@
           };
         };
       };
-
-      autosave = {
-        after_delay = {
-          milliseconds = 1000;
+      show_whitespaces = "all";
+      terminal = {
+        alternate_scroll = "off";
+        blinking = "off";
+        button = false;
+        copy_on_select = false;
+        detect_venv = {
+          on = {
+            activate_script = "default";
+            directories = [
+              ".env"
+              "env"
+              ".venv"
+              "venv"
+            ];
+          };
         };
-      };
-
-      vim_mode = true;
-      ## tell zed to use direnv and direnv can use a flake.nix enviroment.
-      load_direnv = "shell_hook";
-      base_keymap = "JetBrains";
-      telemetry = {
-        diagnostics = false;
-        metrics = false;
+        dock = "bottom";
+        env = {
+          TERM = "alacritty";
+        };
+        font_family = "FiraCode Nerd Font";
+        font_features = null;
+        font_size = 12;
+        line_height = "comfortable";
+        option_as_meta = false;
+        shell = "system";
+        working_directory = "current_project_directory";
       };
       theme = {
-        mode = "system";
-        light = "One Light";
         dark = "Gruvbox Dark";
+        light = "One Light";
+        mode = "dark";
       };
-      show_whitespaces = "all";
+      ui_font_size = 14;
+      vim_mode = true;
 
     };
 

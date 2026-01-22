@@ -3,8 +3,13 @@
   programs = {
     ssh = {
       enable = true;
-      extraOptionOverrides = {
-        SetEnv = "TERM=xterm-256color";
+      enableDefaultConfig = false;
+      matchBlocks = {
+        "*" = {
+          setEnv = {
+            TERM = "xterm-256color";
+          };
+        };
       };
     };
   };

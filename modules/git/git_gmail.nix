@@ -2,9 +2,11 @@
   programs = {
     git = {
       enable = true;
-      userName = "Joern Weissenborn";
-      userEmail = "joern.weissenborn@gmail.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "Joern Weissenborn";
+          email = "joern.weissenborn@gmail.com";
+        };
         pull = {
           rebase = true;
         };
