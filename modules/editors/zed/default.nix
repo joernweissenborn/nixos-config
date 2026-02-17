@@ -48,7 +48,7 @@
       agent = {
         default_model = {
           provider = "copilot_chat";
-          model = "claude-sonnet-4.5";
+          model = "claude-opus-4.6";
         };
         model_parameters = [ ];
         play_sound_when_agent_done = true;
