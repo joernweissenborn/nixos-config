@@ -13,6 +13,7 @@
       "ruff"
       "slint"
       "toml"
+      "typst"
       "yaml"
     ];
 
@@ -63,6 +64,7 @@
         ruff = true;
         slint = true;
         toml = true;
+        typst = true;
         yaml = true;
       };
       auto_update = false;
@@ -86,6 +88,16 @@
             };
           };
         };
+        Typst = {
+          formatter = {
+            external = {
+              command = (toString (lib.getExe pkgs.typstyle));
+              arguments = [ "-" ];
+            };
+          };
+          language_servers = [ "tinymist" ];
+        };
+
         Python = {
           formatter = [
             {
@@ -109,11 +121,11 @@
       load_direnv = "shell_hook";
 
       lsp = {
-        gitlab-ci-ls = {
-          binary = {
-            path = lib.getExe pkgs.gitlab-ci-ls;
-          };
-        };
+        # gitlab-ci-ls = {
+        #   binary = {
+        #     path = lib.getExe pkgs.gitlab-ci-ls;
+        #   };
+        # };
         nix = {
           binary = {
           };
@@ -145,6 +157,11 @@
         package-version-server = {
           binary = {
             path = lib.getExe pkgs.package-version-server;
+          };
+        };
+        tinymist = {
+          binary = {
+            path = lib.getExe pkgs.tinymist;
           };
         };
         slint = {
