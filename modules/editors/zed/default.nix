@@ -53,6 +53,34 @@
         };
         model_parameters = [ ];
         play_sound_when_agent_done = true;
+        tool_permissions = {
+          default = "allow";
+          tools = {
+            terminal = {
+              default = "confirm";
+              always_allow = [
+                { pattern = "^cargo\\s+(build|test|check)"; }
+                { pattern = "^git\\s+(status|log|diff)"; }
+                { pattern = "^cd\\s"; }
+                { pattern = "^git\\s+add\\s.+&&\\s*pre-commit"; }
+                { pattern = "(^|&&\\s*)go\\s+(build|test)"; }
+                { pattern = "(^|&&\\s*)uv\\s+pytest"; }
+              ];
+              always_deny = [
+                { pattern = "rm\\s+-rf\\s+(/|~)"; }
+              ];
+              always_confirm = [
+                { pattern = "sudo\\s"; }
+              ];
+            };
+            edit_file = {
+              always_deny = [
+                { pattern = "\\.env"; }
+                { pattern = "\\.(pem|key)$"; }
+              ];
+            };
+          };
+        };
       };
       auto_install_extensions = {
         gitlab-ci-ls = true;
