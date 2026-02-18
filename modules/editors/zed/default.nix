@@ -149,11 +149,11 @@
       load_direnv = "shell_hook";
 
       lsp = {
-        # gitlab-ci-ls = {
-        #   binary = {
-        #     path = lib.getExe pkgs.gitlab-ci-ls;
-        #   };
-        # };
+        gitlab-ci-ls = {
+          binary = {
+            path = lib.getExe pkgs.gitlab-ci-ls;
+          };
+        };
         nix = {
           binary = {
           };
