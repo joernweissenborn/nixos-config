@@ -10,23 +10,28 @@
       enable = true;
       viAlias = true;
       vimAlias = true;
+      withRuby = false;
+      withPython3 = false;
 
-      extraPackages = with pkgs; [
-        arduino-cli
-        arduino-language-server
-        clang-tools
-        ctags
-        gopls
-        marksman
-        nodejs
-        nil
-        qt5.qtdeclarative
-        yaml-language-server
-      ] ++ (with python3Packages; [
-        black
-        isort
-        pyright
-      ]);
+      extraPackages =
+        with pkgs;
+        [
+          arduino-cli
+          arduino-language-server
+          clang-tools
+          ctags
+          gopls
+          marksman
+          nodejs
+          nil
+          qt5.qtdeclarative
+          yaml-language-server
+        ]
+        ++ (with python3Packages; [
+          black
+          isort
+          pyright
+        ]);
 
       extraConfig = builtins.readFile ./extraConfig.vim;
 
@@ -49,6 +54,7 @@
         vim-qml
         {
           plugin = vim-auto-save;
+          type = "viml";
           config = ''
             let g:auto_save_in_insert_mode = 0
             let g:auto_save = 1
@@ -81,12 +87,14 @@
         }
         {
           plugin = vim-gitgutter;
+          type = "viml";
           config = ''
             let g:gitgutter_highlight_lines = 0
           '';
         }
         {
           plugin = vim-indent-guides;
+          type = "viml";
           config = ''
             let g:indent_guides_enable_on_vim_startup = 1
           '';
@@ -198,6 +206,7 @@
         }
         {
           plugin = nerdcommenter;
+          type = "viml";
           config = ''
              let g:NERDSpaceDelims = 1
             let g:NERDCompactSexyComs = 1

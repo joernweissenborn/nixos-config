@@ -15,11 +15,18 @@
       };
     };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixos-hardware, nixos-wsl }:
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      nixos-wsl,
+    }:
     let
       location = "$HOME/.setup";
       user = "joern";
-      stateVersion = "24.11";
+      stateVersion = "26.05";
     in
     {
       nixosConfigurations = (

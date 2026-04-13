@@ -234,6 +234,7 @@
       };
       ui_font_size = 14;
       vim_mode = true;
+      soft_wrap = "editor_width";
 
     };
 

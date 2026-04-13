@@ -3,6 +3,7 @@
     git = {
       enable = true;
       signing = {
+        format = "openpgp";
         key = "3BB6DE13CBCC9CD7";
         signByDefault = true;
       };
