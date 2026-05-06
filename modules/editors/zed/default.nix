@@ -1,6 +1,10 @@
 { pkgs, lib, ... }:
 
 {
+  home.packages = [
+    pkgs.gitlab-ci-ls
+  ];
+
   programs.zed-editor = {
     enable = true;
     extensions = [
@@ -21,6 +25,7 @@
       {
         context = "Workspace";
         bindings = {
+          
         };
       }
       {
@@ -35,24 +40,63 @@
           ", r" = "editor::Rename";
         };
       }
-      {
-        context = "ContextEditor > Editor";
-        bindings = {
-          ctrl-enter = "assistant::Assist";
-        };
-      }
     ];
 
     ## everything inside of these brackets are Zed options.
     userSettings = {
 
+      # ── General ──────────────────────────────────────────────────────────
+      auto_update = false;
+      autosave = {
+        after_delay = {
+          milliseconds = 1000;
+        };
+      };
+      base_keymap = "JetBrains";
+      load_direnv = "shell_hook";
+      vim_mode = true;
+
+      # ── Appearance & Theme ───────────────────────────────────────────────
+      theme = {
+        dark = "Gruvbox Dark Hard";
+        light = "One Light";
+        mode = "dark";
+      };
+      ui_font_size = 14;
+      buffer_font_size = 12;
+      agent_ui_font_size = 12;
+      show_whitespaces = "all";
+      soft_wrap = "editor_width";
+
+      # ── Panels & Layout ─────────────────────────────────────────────────
+      collaboration_panel = {
+        dock = "left";
+      };
+      debugger = {
+        dock = "right";
+      };
+      git_panel = {
+        dock = "left";
+      };
+      outline_panel = {
+        dock = "left";
+      };
+      project_panel = {
+        dock = "left";
+      };
+
+      # ── AI & Predictions ────────────────────────────────────────────────
       agent = {
+        sidebar_side = "right";
+        dock = "right";
         default_model = {
+          effort = "high";
+          enable_thinking = true;
           provider = "copilot_chat";
           model = "claude-opus-4.6";
         };
         model_parameters = [ ];
-        play_sound_when_agent_done = true;
+        play_sound_when_agent_done = "always";
         tool_permissions = {
           default = "allow";
           tools = {
@@ -82,6 +126,11 @@
           };
         };
       };
+      edit_predictions = {
+        provider = "copilot";
+      };
+
+      # ── Extensions ──────────────────────────────────────────────────────
       auto_install_extensions = {
         gitlab-ci-ls = true;
         go = true;
@@ -95,19 +144,8 @@
         typst = true;
         yaml = true;
       };
-      auto_update = false;
-      autosave = {
-        after_delay = {
-          milliseconds = 1000;
-        };
-      };
-      base_keymap = "JetBrains";
 
-      buffer_font_size = 12;
-      features = {
-        edit_prediction_provider = "copilot";
-      };
-
+      # ── Languages ───────────────────────────────────────────────────────
       languages = {
         Nix = {
           formatter = {
@@ -116,16 +154,6 @@
             };
           };
         };
-        Typst = {
-          formatter = {
-            external = {
-              command = (toString (lib.getExe pkgs.typstyle));
-              arguments = [ "-" ];
-            };
-          };
-          language_servers = [ "tinymist" ];
-        };
-
         Python = {
           formatter = [
             {
@@ -141,21 +169,26 @@
             }
           ];
           language_servers = [
-            "pyright"
+            "ty"
             "ruff"
           ];
         };
-      };
-      load_direnv = "shell_hook";
-
-      lsp = {
-        gitlab-ci-ls = {
-          binary = {
-            path = lib.getExe pkgs.gitlab-ci-ls;
+        Typst = {
+          formatter = {
+            external = {
+              command = (toString (lib.getExe pkgs.typstyle));
+              arguments = [ "-" ];
+            };
           };
+          language_servers = [ "tinymist" ];
         };
-        nix = {
+      };
+
+      # ── LSP ─────────────────────────────────────────────────────────────
+      lsp = {
+        nil = {
           binary = {
+            path = lib.getExe pkgs.nil;
           };
         };
         nixd = {
@@ -163,9 +196,9 @@
             path = lib.getExe pkgs.nixd;
           };
         };
-        nil = {
+        package-version-server = {
           binary = {
-            path = lib.getExe pkgs.nil;
+            path = lib.getExe pkgs.package-version-server;
           };
         };
         ruff = {
@@ -182,9 +215,9 @@
             };
           };
         };
-        package-version-server = {
+        slint = {
           binary = {
-            path = lib.getExe pkgs.package-version-server;
+            path = lib.getExe pkgs.slint-lsp;
           };
         };
         tinymist = {
@@ -192,13 +225,15 @@
             path = lib.getExe pkgs.tinymist;
           };
         };
-        slint = {
+        ty = {
           binary = {
-            path = lib.getExe pkgs.slint-lsp;
+            path = lib.getExe pkgs.ty;
+            arguments = [ "server" ];
           };
         };
       };
-      show_whitespaces = "all";
+
+      # ── Terminal ─────────────────────────────────────────────────────────
       terminal = {
         alternate_scroll = "off";
         blinking = "off";
@@ -227,14 +262,6 @@
         shell = "system";
         working_directory = "current_project_directory";
       };
-      theme = {
-        dark = "Gruvbox Dark";
-        light = "One Light";
-        mode = "dark";
-      };
-      ui_font_size = 14;
-      vim_mode = true;
-      soft_wrap = "editor_width";
 
     };
 
