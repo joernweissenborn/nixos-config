@@ -1,4 +1,16 @@
-{ lib, inputs, nixpkgs, home-manager, user, stateVersion, location, nixos-hardware, nixos-wsl , ... }:
+{
+  lib,
+  inputs,
+  nixpkgs,
+  home-manager,
+  user,
+  stateVersion,
+  location,
+  nixos-hardware,
+  nixos-wsl,
+  sops-nix,
+  ...
+}:
 
 let
   system = "x86_64-linux"; # System architecture
@@ -9,41 +21,62 @@ let
   };
 
   lib = nixpkgs.lib;
-  mkHost = { user, hostName, hostModule ? hostName, extraModules ? [ ], extraHome ? [ ], stateVersion, homeModules ? [ ] }: lib.nixosSystem {
-    inherit system;
-    specialArgs = {
-      inherit inputs user location stateVersion;
-      host = {
-        inherit hostName;
+  mkHost =
+    {
+      user,
+      hostName,
+      hostModule ? hostName,
+      extraModules ? [ ],
+      extraHome ? [ ],
+      stateVersion,
+      homeModules ? [ ],
+    }:
+    lib.nixosSystem {
+      inherit system;
+      specialArgs = {
+        inherit
+          inputs
+          user
+          location
+          stateVersion
+          ;
+        host = {
+          inherit hostName;
+        };
       };
-    };
-    modules = [
-      ./${hostModule}
-      home-manager.nixosModules.home-manager
-      {
-        home-manager.useGlobalPkgs = true;
-        home-manager.useUserPackages = true;
-        home-manager.extraSpecialArgs = {
-          inherit user;
-          host = {
-            inherit hostName;
+      modules = [
+        ./${hostModule}
+        sops-nix.nixosModules.sops
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = {
+            inherit user;
+            host = {
+              inherit hostName;
+            };
           };
-        };
-        home-manager.users.${user} = {
-          imports = [
-            (import ../user/${user} {
-              inherit lib pkgs user stateVersion;
-              imports =
-                (import ../modules/editors) ++
-                  (import ../modules/shell) ++
-                  (import ../modules/ssh) ++
-                  homeModules;
-            })
-          ] ++ extraHome;
-        };
-      }
-    ] ++ extraModules;
-  };
+          home-manager.users.${user} = {
+            imports = [
+              sops-nix.homeManagerModules.sops
+              (import ../user/${user} {
+                inherit
+                  lib
+                  pkgs
+                  user
+                  stateVersion
+                  ;
+                imports =
+                  (import ../modules/editors) ++ (import ../modules/shell) ++ (import ../modules/ssh) ++ homeModules;
+              })
+            ]
+            ++ extraHome;
+          };
+        }
+      ]
+      ++ extraModules;
+    };
 in
 {
   elenia = mkHost {
@@ -88,6 +121,7 @@ in
       ../modules/browser
       ../modules/nitrokey
       ../modules/git/git_tocadero.nix
+      ../modules/sops
     ];
     # homeModules = (import ../modules/terminals);
   };

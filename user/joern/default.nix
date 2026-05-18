@@ -1,4 +1,11 @@
-{ lib, pkgs, user, stateVersion, imports, ... }:
+{
+  lib,
+  pkgs,
+  user,
+  stateVersion,
+  imports,
+  ...
+}:
 {
   inherit imports;
 
@@ -7,7 +14,6 @@
 
     username = "${user}";
     homeDirectory = "/home/${user}";
-
 
     packages = with pkgs; [
       # Fonts
@@ -34,6 +40,8 @@
       # dev tools
       python3
       pre-commit
+      age
+      sops
       # zed-editor.fhs
 
       # utils

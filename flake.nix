@@ -13,6 +13,11 @@
         url = "github:nix-community/home-manager";
         inputs.nixpkgs.follows = "nixpkgs";
       };
+
+      sops-nix = {
+        url = "github:Mic92/sops-nix";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
     };
 
   outputs =
@@ -22,6 +27,7 @@
       home-manager,
       nixos-hardware,
       nixos-wsl,
+      sops-nix,
     }:
     let
       location = "$HOME/.setup";
@@ -38,6 +44,7 @@
           inherit nixos-wsl;
           inherit nixpkgs;
           inherit (nixpkgs) lib;
+          inherit sops-nix;
           inherit user;
           inherit stateVersion;
         }

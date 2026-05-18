@@ -1,0 +1,10 @@
+# This config tells sops which keys to encrypt/decrypt with.
+# Generate an age key with: age-keygen -o ~/.config/sops/age/keys.txt
+# Then paste the public key below.
+keys:
+  - &joern age12kedn828artd5q65xlvgmj9zhaj5xj7uqwqnz04krqwnu5rgup3qkdedc5
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *joern

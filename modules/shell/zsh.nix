@@ -55,6 +55,9 @@
 
         emulate zsh -c "$(direnv hook zsh)"
         export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+        # Load secrets from sops
+        [[ -f /run/user/1000/secrets/gitlab_token ]] && export GITLAB_TOKEN=$(cat /run/user/1000/secrets/gitlab_token)
       '';
     };
   };

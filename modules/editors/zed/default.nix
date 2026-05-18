@@ -25,7 +25,7 @@
       {
         context = "Workspace";
         bindings = {
-          
+
         };
       }
       {
@@ -229,6 +229,13 @@
           binary = {
             path = lib.getExe pkgs.ty;
             arguments = [ "server" ];
+          };
+        };
+        yaml-language-server = {
+          settings = {
+            yaml = {
+              validate = false;
+            };
           };
         };
       };
