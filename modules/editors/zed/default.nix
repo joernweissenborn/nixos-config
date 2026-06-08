@@ -9,6 +9,7 @@
     enable = true;
     extensions = [
       "gitlab-ci-ls"
+      "gitlab-mcp"
       "go"
       "json"
       "make"
@@ -45,7 +46,7 @@
     ## everything inside of these brackets are Zed options.
     userSettings = {
 
-      # ── General ──────────────────────────────────────────────────────────
+      # ── General ─────────────────────────────────────────────────────────────
       auto_update = false;
       autosave = {
         after_delay = {

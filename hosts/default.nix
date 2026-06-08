@@ -94,7 +94,6 @@ in
       ../modules/inkscape
       ../modules/vial
     ];
-    # homeModules = (import ../modules/terminals);
   };
   tara = mkHost {
     inherit user;
@@ -108,7 +107,6 @@ in
       ../modules/nitrokey
       ../modules/git/git_gmail_nitrokey.nix
     ];
-    # homeModules = (import ../modules/terminals);
   };
   lara = mkHost {
     inherit user;
@@ -123,7 +121,6 @@ in
       ../modules/git/git_tocadero.nix
       ../modules/sops
     ];
-    # homeModules = (import ../modules/terminals);
   };
   tina-wsl = mkHost {
     inherit user;

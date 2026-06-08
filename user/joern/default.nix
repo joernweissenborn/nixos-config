@@ -56,7 +56,7 @@
     sessionVariables = {
       EDITOR = "nvim";
       BROWSER = "firefox";
-      TERMINAL = "kitty";
+      TERMINAL = "kgx";
       VISUAL = "nvim";
       XDG_CACHE_HOME = "\${HOME}/.cache";
       XDG_CONFIG_HOME = "\${HOME}/.config";
