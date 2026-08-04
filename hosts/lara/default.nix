@@ -2,20 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, user, ... }:
+{
+  config,
+  pkgs,
+  user,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../os/default.nix
-      ../../os/services/pipewire/default.nix
-      ../../os/services/ssh/default.nix
-      ../../os/services/gpg2
-      ../../os/services/onedrive
-      ../../modules/desktop/gnome/default.nix # Window Manager
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../os/default.nix
+    ../../os/services/pipewire/default.nix
+    ../../os/services/ssh/default.nix
+    ../../os/services/gpg2
+    ../../os/services/onedrive
+    ../../modules/desktop/gnome/default.nix # Window Manager
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -27,11 +31,10 @@
   };
 
   networking.hostName = "lara"; # Define your hostname.
-  networking.extraHosts =
-  ''
-    10.179.101.54 gitlab.tocadero.srservers.net
-    10.179.101.54 pages.tocadero.srservers.net
-    10.179.101.54 analyzer.pages.tocadero.srservers.net
+  networking.extraHosts = ''
+    10.40.101.54 gitlab.tocadero.srservers.net
+    10.40.101.54 pages.tocadero.srservers.net
+    10.40.101.54 analyzer.pages.tocadero.srservers.net
   '';
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -44,6 +47,16 @@
   networking.networkmanager.enable = true;
 
   virtualisation.docker.enable = true;
+  # Move Docker's default bridge subnets out of 172.17-18.x.x, which
+  # collides with our VPN's address range.
+  virtualisation.docker.daemon.settings = {
+    "default-address-pools" = [
+      {
+        base = "172.20.0.0/14";
+        size = 24;
+      }
+    ];
+  };
   services.fprintd.enable = true;
   services.fwupd.enable = true;
 

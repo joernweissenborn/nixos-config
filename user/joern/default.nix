@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   user,
   stateVersion,
@@ -45,7 +44,6 @@
       # zed-editor.fhs
 
       # utils
-      busybox
       # signal-desktop
       openfortivpn
       vlc

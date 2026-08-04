@@ -94,7 +94,7 @@
           effort = "high";
           enable_thinking = true;
           provider = "copilot_chat";
-          model = "claude-opus-4.6";
+          model = "claude-sonnet-4.6";
         };
         model_parameters = [ ];
         play_sound_when_agent_done = "always";
