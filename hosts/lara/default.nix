@@ -18,7 +18,8 @@
     ../../os/services/ssh/default.nix
     ../../os/services/gpg2
     ../../os/services/onedrive
-    ../../modules/desktop/gnome/default.nix # Window Manager
+    ../../modules/desktop/gnome/default.nix # Keep GNOME available
+    ../../modules/desktop/hyprland/default.nix
   ];
 
   # Bootloader.
@@ -31,6 +32,7 @@
   };
 
   networking.hostName = "lara"; # Define your hostname.
+  services.displayManager.defaultSession = "gnome";
   networking.extraHosts = ''
     10.40.101.54 gitlab.tocadero.srservers.net
     10.40.101.54 pages.tocadero.srservers.net

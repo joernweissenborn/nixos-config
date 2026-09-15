@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.bubblewrap
     pkgs.gitlab-ci-ls
   ];
 
@@ -94,7 +95,7 @@
           effort = "high";
           enable_thinking = true;
           provider = "copilot_chat";
-          model = "claude-sonnet-4.6";
+          model = "claude-sonnet-5";
         };
         model_parameters = [ ];
         play_sound_when_agent_done = "always";

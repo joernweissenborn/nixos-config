@@ -29,7 +29,6 @@
     ];
     gnome.excludePackages = (with pkgs; [
       # Gnome ignored packages
-      gnome-photos
       gnome-tour
       epiphany
       geary

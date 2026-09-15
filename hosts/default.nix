@@ -120,6 +120,7 @@ in
       ../modules/nitrokey
       ../modules/git/git_tocadero.nix
       ../modules/sops
+      ../modules/desktop/hyprland/home.nix
     ];
   };
   tina-wsl = mkHost {
