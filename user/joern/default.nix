@@ -26,9 +26,9 @@
       ranger # File Manager
       ncdu
       tldr # Helper
-      tmate
       pciutils
       usbutils
+      ripgrep
 
       # File Management
       rsync # Syncer - $ rsync -r dir1/ dir2/

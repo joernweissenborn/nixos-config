@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.bubblewrap
     pkgs.gitlab-ci-ls
+    pkgs.rust-analyzer
   ];
 
   programs.zed-editor = {
@@ -149,6 +150,9 @@
 
       # ── Languages ───────────────────────────────────────────────────────
       languages = {
+        Rust = {
+          language_servers = [ "rust-analyzer" ];
+        };
         Nix = {
           formatter = {
             external = {
@@ -188,6 +192,11 @@
 
       # ── LSP ─────────────────────────────────────────────────────────────
       lsp = {
+        rust-analyzer = {
+          binary = {
+            path = lib.getExe pkgs.rust-analyzer;
+          };
+        };
         nil = {
           binary = {
             path = lib.getExe pkgs.nil;
