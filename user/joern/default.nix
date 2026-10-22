@@ -14,6 +14,10 @@
     username = "${user}";
     homeDirectory = "/home/${user}";
 
+    file = {
+      ".config/zed/AGENTS.md".source = ./AGENTS.md;
+    };
+
     packages = with pkgs; [
       # Fonts
       carlito # NixOS
