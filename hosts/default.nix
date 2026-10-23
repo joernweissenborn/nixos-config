@@ -93,6 +93,7 @@ in
       # ../modules/nitrokey
       ../modules/inkscape
       ../modules/vial
+      ../modules/desktop/hyprland/home.nix
     ];
   };
   tara = mkHost {

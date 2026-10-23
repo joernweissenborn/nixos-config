@@ -12,7 +12,8 @@
       ../../os/default.nix
       ../../os/services/pipewire/default.nix
       ../../os/services/ssh/default.nix
-      ../../modules/desktop/gnome/default.nix # Window Manager
+      ../../modules/desktop/gnome/default.nix # Keep GNOME available
+      ../../modules/desktop/hyprland/default.nix
       ../../os/services/gpg2
     ];
 
