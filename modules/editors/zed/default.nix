@@ -13,6 +13,7 @@
       "gitlab-ci-ls"
       "gitlab-mcp"
       "go"
+      "harper"
       "json"
       "make"
       "nix"
@@ -137,6 +138,7 @@
       auto_install_extensions = {
         gitlab-ci-ls = true;
         go = true;
+        harper = true;
         json = true;
         make = true;
         nix = true;
@@ -149,6 +151,11 @@
       };
 
       # ── Languages ───────────────────────────────────────────────────────
+      # Opt in to Harper per language rather than checking all supported files.
+      language_servers = [
+        "!harper-ls"
+        "..."
+      ];
       languages = {
         Rust = {
           language_servers = [ "rust-analyzer" ];
@@ -186,12 +193,21 @@
               arguments = [ "-" ];
             };
           };
-          language_servers = [ "tinymist" ];
+          language_servers = [
+            "tinymist"
+            "harper-ls"
+          ];
         };
       };
 
       # ── LSP ─────────────────────────────────────────────────────────────
       lsp = {
+        harper-ls = {
+          binary = {
+            path = lib.getExe pkgs.harper;
+            arguments = [ "--stdio" ];
+          };
+        };
         rust-analyzer = {
           binary = {
             path = lib.getExe pkgs.rust-analyzer;

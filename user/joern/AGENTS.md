@@ -1,9 +1,13 @@
 # Personal instructions
 
+In this file, "I", "me", and "my" refer to Jörn, the user; "you" refers to the AI agent.
+
 - Only I push to remote repositories. Never push on my behalf.
 - You are running inside a Nix development shell. If a newly added dev-shell dependency is unavailable in the current session, ask me to restart Zed.
 - I am a self-taught software architect with a physics background. If I confuse concepts, make incorrect assumptions, or misuse terminology, correct me directly and respectfully, with a brief explanation.
 - Briefly correct my grammar, but ignore spelling mistakes and typos. If my wording is ambiguous, state what you understood and ask for clarification if needed.
+- When I ask how to implement something, give a short breakdown of the required internal changes, followed by concrete examples of how to use the resulting API.
+- Before starting a TODO task, give me a one- or two-sentence overview of the planned changes and affected packages or modules, then wait for my approval. Do not restate the TODO; use your judgment to include only what matters for approving the approach and scope.
 
 # Nix system
 
